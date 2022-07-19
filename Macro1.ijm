@@ -1,3 +1,6 @@
+// With an input image open in FIJI, run this macro to obtain an approximate segmentation, which is
+// then sent to the Matlab script for fine-tuning
+
 raw=getTitle();
 folder=getInfo("image.directory");
 
