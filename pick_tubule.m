@@ -1,6 +1,6 @@
-[file, path] = uigetfile2({'*.tif'; '*.png'});
-raw=imread([path file]);
-[fid, errmsg] =fopen([path 'weka_' file]);
+[file, path] = uigetfile({'*.tif'; '*.png'});
+raw = imread([path file]);
+[fid, errmsg] = fopen([path 'weka_' file]);
 if ~isempty(errmsg)
     disp(['File "weka_' file '" does not exit; generate it first from FIJI'])
     return
@@ -18,7 +18,7 @@ others_mask=zeros(size(weka), 'uint8');
 others_mask(weka>1) = 1;
 
 tubule_labels=bwlabel(tubule_mask);
-%statsT = regionprops('table', tubule_labels, 'Area', 'Circularity', 'Extent');
+
 statsT = regionprops('table', tubule_labels, 'Area', 'ConvexArea','MaxFeretProperties', 'MinFeretProperties');
 tubule_newmask=zeros(size(tubule_mask), 'uint8');
 areaThresh = 50;   %% threshold 1: number of pixels
